@@ -65,3 +65,10 @@ pg_dump -cC --inserts -U freecodecamp worldcup > worldcup.sql
 git add .
 git push
 git add .
+git commit -m 'add TRUNCATE in insert_data.sh'
+git push
+psql --username=freecodecamp --dbname=worldcup -c "TRUNCATE TABLE games, teams RESTART IDENTITY"
+./insert_data.sh
+./queries.sh
+pg_dump -cC --inserts -U freecodecamp worldcup > worldcup.sql
+git add .
