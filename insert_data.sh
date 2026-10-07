@@ -9,6 +9,8 @@ fi
 
 # Do not change code above this line. Use the PSQL variable above to query your database.
 
+echo $($PSQL "TRUNCATE TABLE games, teams")
+
 tail -n +2 games.csv | while IFS="," read YEAR ROUND WINNER OPPONENT WG OG
 do
   $PSQL "INSERT INTO teams(name) VALUES('$WINNER'),('$OPPONENT') ON CONFLICT DO NOTHING" > /dev/null
